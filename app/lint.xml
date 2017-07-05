@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <issue id="IconDipSize">
+        <ignore path="src/main/res/drawable-hdpi/splash.png" />
+        <ignore path="src/main/res/drawable-mdpi/splash.png" />
+        <ignore path="src/main/res/drawable-xhdpi/splash.png" />
+        <ignore path="src/main/res/drawable-xxhdpi/splash.png" />
+    </issue>
+    <issue id="IconLauncherShape">
+        <ignore path="src/main/res/mipmap-hdpi/icon.png" />
+        <ignore path="src/main/res/mipmap-mdpi/icon.png" />
+        <ignore path="src/main/res/mipmap-xhdpi/icon.png" />
+        <ignore path="src/main/res/mipmap-xxhdpi/icon.png" />
+        <ignore path="src/main/res/mipmap-xxxhdpi/icon.png" />
+    </issue>
+</lint>

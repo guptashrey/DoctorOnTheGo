@@ -3,6 +3,7 @@
     package="net.shreygupta.doctoronthego">
 
     <application
+        android:fullBackupContent="true"
         android:largeHeap="true"
         android:allowBackup="true"
         android:icon="@mipmap/icon"
@@ -10,14 +11,14 @@
         android:roundIcon="@mipmap/icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SplashActivity" android:theme="@style/Splash">
+        <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>
