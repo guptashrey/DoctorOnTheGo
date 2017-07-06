@@ -11,10 +11,10 @@ import android.view.ViewGroup;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SignInFragment extends Fragment {
+public class PatientSignInFragment extends Fragment {
 
 
-    public SignInFragment() {
+    public PatientSignInFragment() {
         // Required empty public constructor
     }
 
@@ -23,7 +23,7 @@ public class SignInFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_sign_in, container, false);
+        return inflater.inflate(R.layout.fragment_patient_sign_in, container, false);
     }
 
 }

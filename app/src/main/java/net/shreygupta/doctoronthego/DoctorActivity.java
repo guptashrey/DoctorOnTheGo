@@ -24,18 +24,18 @@ public class DoctorActivity extends AppCompatActivity {
         signin_doctor.setText("SIGN IN");
         t1.addTab(signin_doctor);
 
-        loadFragment(new Doctor_sign_up(), "SignUp");
+        loadFragment(new DoctorSignUpFragment(), "SignUp");
 
         t1.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
 
                 if (tab.getPosition() == 0){
-                    loadFragment(new Doctor_sign_up(), "SignUp");
+                    loadFragment(new DoctorSignUpFragment(), "SignUp");
                 }
 
                 if (tab.getPosition() == 1) {
-                    loadFragment(new Doctor_sign_in(), "SignIn");
+                    loadFragment(new DoctorSignInFragment(), "SignIn");
                 }
             }
 

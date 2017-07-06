@@ -7,12 +7,12 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity {
+public class PatientActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_patient);
 
         TabLayout t = (TabLayout) findViewById(R.id.tab);
 
@@ -24,18 +24,18 @@ public class MainActivity extends AppCompatActivity {
         signin.setText("SIGN IN");
         t.addTab(signin);
 
-        loadFragment(new SignUpFragment(), "SignUp");
+        loadFragment(new PatientSignUpFragment(), "SignUp");
 
         t.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
 
                 if (tab.getPosition() == 0){
-                    loadFragment(new SignUpFragment(), "SignUp");
+                    loadFragment(new PatientSignUpFragment(), "SignUp");
                 }
 
                 if (tab.getPosition() == 1) {
-                    loadFragment(new SignInFragment(), "SignIn");
+                    loadFragment(new PatientSignInFragment(), "SignIn");
                 }
             }
 

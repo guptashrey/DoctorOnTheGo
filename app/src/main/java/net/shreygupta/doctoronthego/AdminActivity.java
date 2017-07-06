@@ -14,7 +14,7 @@ public class AdminActivity extends AppCompatActivity {
 
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-        ft.replace(R.id.frame_admin, new AdminSignIn(),"Sign In");
+        ft.replace(R.id.frame_admin, new AdminSignInFragment(),"Sign In");
         ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
         ft.commit();
 

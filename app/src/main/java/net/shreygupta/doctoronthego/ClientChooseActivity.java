@@ -6,12 +6,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class Client_Choose extends AppCompatActivity {
+public class ClientChooseActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_client__choose);
+        setContentView(R.layout.activity_client_choose);
 
         Button patient_activity = (Button) findViewById(R.id.patient_activity);
         Button doctor_activity = (Button) findViewById(R.id.doctor_activity);
@@ -20,21 +20,21 @@ public class Client_Choose extends AppCompatActivity {
         patient_activity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Client_Choose.this,MainActivity.class));
+                startActivity(new Intent(ClientChooseActivity.this,PatientActivity.class));
             }
         });
 
         doctor_activity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Client_Choose.this,DoctorActivity.class));
+                startActivity(new Intent(ClientChooseActivity.this,DoctorActivity.class));
             }
         });
 
         admin_activity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Client_Choose.this,AdminActivity.class));
+                startActivity(new Intent(ClientChooseActivity.this,AdminActivity.class));
             }
         });
     }
