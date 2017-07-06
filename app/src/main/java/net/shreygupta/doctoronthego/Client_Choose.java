@@ -30,5 +30,12 @@ public class Client_Choose extends AppCompatActivity {
                 startActivity(new Intent(Client_Choose.this,DoctorActivity.class));
             }
         });
+
+        admin_activity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Client_Choose.this,AdminActivity.class));
+            }
+        });
     }
 }
