@@ -3,22 +3,24 @@
     package="net.shreygupta.doctoronthego">
 
     <application
-        android:fullBackupContent="true"
-        android:largeHeap="true"
         android:allowBackup="true"
+        android:fullBackupContent="true"
         android:icon="@mipmap/icon"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:roundIcon="@mipmap/icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SplashActivity">
+        <activity android:name=".SplashActivity"></activity>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".Client_Choose">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
+        <activity android:name=".DoctorActivity"></activity>
     </application>
 
 </manifest>
