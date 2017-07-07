@@ -1,6 +1,8 @@
 package net.shreygupta.doctoronthego;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -10,6 +12,14 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+
+        SharedPreferences sp = getSharedPreferences("my_sp", Context.MODE_PRIVATE);
+        SharedPreferences.Editor e = sp.edit();
+
+        e.putString("Admin_Email", "shrey.gupta1904@gmail.com");
+        e.putString("Admin_Password", "12345678");
+
+        e.apply();
 
         new Thread(){
             public void run(){
@@ -22,7 +32,6 @@ public class SplashActivity extends AppCompatActivity {
             }
         }.start();
     }
-
 
     @Override
     protected void onStop() {
