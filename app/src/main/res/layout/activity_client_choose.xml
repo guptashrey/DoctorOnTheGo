@@ -6,37 +6,58 @@
     android:orientation="vertical"
     tools:context="net.shreygupta.doctoronthego.ClientChooseActivity">
 
-    <TextView
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/choose_client"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="50dp"
-        android:gravity="center"
-        android:textSize="30sp"
-        android:textColor="@color/colorText"/>
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_margin="5dp">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/client_choose_button_1"
-        android:layout_gravity="center"
-        android:id="@+id/patient_activity"/>
+        <ImageButton
+            android:contentDescription="@string/client_choose_img_1"
+            android:scaleType="centerCrop"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/patient"
+            android:id="@+id/patient_activity"/>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/client_choose_button_2"
-        android:layout_gravity="center"
-        android:id="@+id/doctor_activity"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start|center_vertical"
+            android:clickable="false"
+            android:layout_margin="5dp"
+            android:textSize="40sp"
+            android:text="@string/client_choose_button_1"
+            android:textColor="@color/colorText">
+        </TextView>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/client_choose_button_3"
-        android:layout_gravity="center"
-        android:id="@+id/admin_activity"/>
+    </FrameLayout>
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_margin="5dp">
 
+        <ImageButton
+            android:contentDescription="@string/client_choose_img_2"
+            android:scaleType="centerCrop"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/doctor"
+            android:id="@+id/doctor_activity"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start|center_vertical"
+            android:clickable="false"
+            android:layout_margin="5dp"
+            android:textSize="40sp"
+            android:text="@string/client_choose_button_2"
+            android:textColor="@color/colorText">
+        </TextView>
+
+    </FrameLayout>
 
 </LinearLayout>
