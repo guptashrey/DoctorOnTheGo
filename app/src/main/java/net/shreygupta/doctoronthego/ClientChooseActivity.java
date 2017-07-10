@@ -1,8 +1,8 @@
 package net.shreygupta.doctoronthego;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -22,14 +22,14 @@ public class ClientChooseActivity extends AppCompatActivity {
         patient_activity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(ClientChooseActivity.this,PatientActivity.class));
+                startActivity(new Intent(ClientChooseActivity.this, PatientActivity.class));
             }
         });
 
         doctor_activity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(ClientChooseActivity.this,DoctorActivity.class));
+                startActivity(new Intent(ClientChooseActivity.this, DoctorActivity.class));
             }
         });
     }
@@ -44,8 +44,8 @@ public class ClientChooseActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        if(item.getItemId() == R.id.admin_activity) {
-            startActivity(new Intent(ClientChooseActivity.this,AdminActivity.class));
+        if (item.getItemId() == R.id.admin_activity) {
+            startActivity(new Intent(ClientChooseActivity.this, AdminActivity.class));
         }
 
         return super.onOptionsItemSelected(item);

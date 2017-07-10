@@ -4,8 +4,6 @@ package net.shreygupta.doctoronthego.fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -26,10 +24,10 @@ import net.shreygupta.doctoronthego.R;
  */
 public class PatientSignInFragment extends Fragment {
 
-    EditText email, password;
+    private EditText email;
+    private EditText password;
 
-    Button patient_signin_button;
-    DatabaseHelper db_h;
+    private Button patient_signin_button;
 
     public PatientSignInFragment() {
         // Required empty public constructor
@@ -65,11 +63,11 @@ public class PatientSignInFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
     }
 
-    public void patient_signin() {
+    private void patient_signin() {
 
         String a = email.getText().toString();
         String b = password.getText().toString();
-        db_h = new DatabaseHelper(getActivity());
+        DatabaseHelper db_h = new DatabaseHelper(getActivity());
 
         String c = db_h.getPatientPassword(a);
         if(c == null){
@@ -80,7 +78,7 @@ public class PatientSignInFragment extends Fragment {
                 SharedPreferences sp = this.getActivity().getSharedPreferences("my_sp1", Context.MODE_PRIVATE);
                 SharedPreferences.Editor e = sp.edit();
                 e.putString("Patient_Email",a);
-                e.commit();
+                e.apply();
 
                 startActivity(new Intent(this.getActivity(),PatientContentActivity.class));
             }

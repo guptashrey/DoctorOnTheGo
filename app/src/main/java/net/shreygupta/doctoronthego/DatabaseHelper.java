@@ -6,10 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-/**
- * Created by shreygupta on 10/07/17.
- */
-
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "Patient DatabaseHelper";
@@ -40,8 +36,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put("EMAIL", c);
         contentValues.put("PASSWORD", d);
 
-        long id = db.insert("PATIENT_INFO", null, contentValues);
-        return id;
+        return db.insert("PATIENT_INFO", null, contentValues);
     }
 
     public String getData() {
@@ -49,7 +44,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String [] columns = {"P_ID", "FIRST_NAME", "LAST_NAME", "EMAIL", "PASSWORD"};
 
         Cursor cursor = db.query("PATIENT_INFO", columns, null, null, null, null, null);
-        StringBuffer buffer = new StringBuffer();
+        StringBuilder buffer = new StringBuilder();
 
         while (cursor.moveToNext()) {
 
@@ -58,8 +53,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             String last_name = cursor.getString(cursor.getColumnIndex("LAST_NAME"));
             String password = cursor.getString(cursor.getColumnIndex("PASSWORD"));
 
-            buffer.append(p_id + " " + first_name + " " + last_name + " " + password + "\n");
+            buffer.append(p_id).append(" ").append(first_name).append(" ").append(last_name).append(" ").append(password).append("\n");
         }
+        cursor.close();
         return buffer.toString();
     }
 
@@ -76,9 +72,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         );
 
         if (result.moveToFirst()){
-            return result.getString(result.getColumnIndex("FIRST_NAME"));
+
+            String s = result.getString(result.getColumnIndex("FIRST_NAME"));
+            result.close();
+            return s;
         }
         else {
+            result.close();
             return null;
         }
     }
@@ -96,9 +96,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         );
 
         if (result.moveToFirst()){
-            return result.getString(result.getColumnIndex("LAST_NAME"));
+            String s = result.getString(result.getColumnIndex("LAST_NAME"));
+            result.close();
+            return s;
         }
         else {
+            result.close();
             return null;
         }
     }
@@ -118,9 +121,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         );
 
         if (result.moveToFirst()){
-            return result.getString(result.getColumnIndex("PASSWORD"));
+            String s = result.getString(result.getColumnIndex("PASSWORD"));
+            result.close();
+            return s;
         }
         else {
+            result.close();
             return null;
         }
 
@@ -137,8 +143,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put("PASSWORD", d);
 
 
-        long id = db.insert("DOCTOR_INFO", null, contentValues);
-        return id;
+        return db.insert("DOCTOR_INFO", null, contentValues);
     }
 
 
@@ -157,9 +162,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         );
 
         if (result.moveToFirst()){
-            return result.getString(result.getColumnIndex("PASSWORD"));
+            String s = result.getString(result.getColumnIndex("PASSWORD"));
+            result.close();
+            return s;
         }
         else {
+            result.close();
             return null;
         }
     }

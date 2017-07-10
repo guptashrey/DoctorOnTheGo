@@ -7,35 +7,39 @@
     tools:context="net.shreygupta.doctoronthego.fragment.PatientBookAppointmentFragment">
 
     <EditText
+        android:id="@+id/fname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="First Name"
-        android:id="@+id/fname"/>
+        android:hint="@string/signup_hint_1"
+        android:inputType="textPersonName" />
 
     <EditText
+        android:id="@+id/lname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Last Name"
-        android:id="@+id/lname"/>
+        android:hint="@string/signup_hint_2"
+        android:inputType="textPersonName" />
 
     <EditText
+        android:id="@+id/email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Email"
-        android:id="@+id/email"/>
+        android:hint="@string/signup_hint_3"
+        android:inputType="textEmailAddress" />
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="date"/>
+        android:text="@string/datepicker_button" />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Time"/>
+        android:text="@string/timepicker_button" />
 
     <ListView
+        android:id="@+id/doclist"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/doclist">
+        android:layout_height="wrap_content">
 
     </ListView>
 

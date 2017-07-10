@@ -1,16 +1,13 @@
 package net.shreygupta.doctoronthego;
 
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 
 import net.shreygupta.doctoronthego.fragment.DoctorProfileFragment;
-import net.shreygupta.doctoronthego.fragment.PatientBookAppointmentFragment;
-import net.shreygupta.doctoronthego.fragment.PatientProfileFragment;
-import net.shreygupta.doctoronthego.fragment.PatientViewCurrentAppointmentsFragment;
 
 public class DoctorContentActivity extends AppCompatActivity {
 

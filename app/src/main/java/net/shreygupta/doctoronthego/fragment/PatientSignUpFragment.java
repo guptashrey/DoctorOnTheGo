@@ -20,10 +20,12 @@ import net.shreygupta.doctoronthego.R;
  */
 public class PatientSignUpFragment extends Fragment {
 
-    EditText first_name, last_name, email, password, con_password;
-    Button patient_signup_button;
-
-    DatabaseHelper db_h;
+    private EditText first_name;
+    private EditText last_name;
+    private EditText email;
+    private EditText password;
+    private EditText con_password;
+    private Button patient_signup_button;
 
     public PatientSignUpFragment() {
         // Required empty public constructor
@@ -60,7 +62,7 @@ public class PatientSignUpFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
     }
 
-    public void patient_signup(){
+    private void patient_signup() {
 
         String a = first_name.getText().toString();
         String b = last_name.getText().toString();
@@ -68,7 +70,7 @@ public class PatientSignUpFragment extends Fragment {
         String d = password.getText().toString();
         String e = con_password.getText().toString();
 
-        db_h = new DatabaseHelper(getActivity());
+        DatabaseHelper db_h = new DatabaseHelper(getActivity());
         long id = db_h.patient_insert_Data(a, b, c, d);
 
         if (id <= 0) {

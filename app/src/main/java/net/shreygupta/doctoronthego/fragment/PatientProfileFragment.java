@@ -10,24 +10,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import net.shreygupta.doctoronthego.DatabaseHelper;
 import net.shreygupta.doctoronthego.R;
-
-import org.w3c.dom.Text;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class PatientProfileFragment extends Fragment {
 
-    DatabaseHelper db_h;
-
-    TextView email;
-    TextView fname;
-    TextView lname;
-    String patient_email;
+    private TextView email;
+    private TextView fname;
+    private TextView lname;
 
     public PatientProfileFragment() {
         // Required empty public constructor
@@ -52,9 +46,9 @@ public class PatientProfileFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         final SharedPreferences sp = this.getActivity().getSharedPreferences("my_sp1", Context.MODE_PRIVATE);
-        patient_email = sp.getString("Patient_Email", null);
+        String patient_email = sp.getString("Patient_Email", null);
 
-        db_h = new DatabaseHelper(getActivity());
+        DatabaseHelper db_h = new DatabaseHelper(getActivity());
         String Fname = db_h.getFname(patient_email);
         String Lname = db_h.getLname(patient_email);
 

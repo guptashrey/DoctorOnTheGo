@@ -1,11 +1,11 @@
 package net.shreygupta.doctoronthego;
 
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 
 import net.shreygupta.doctoronthego.fragment.PatientSignInFragment;
 import net.shreygupta.doctoronthego.fragment.PatientSignUpFragment;
@@ -33,7 +33,7 @@ public class PatientActivity extends AppCompatActivity {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
 
-                if (tab.getPosition() == 0){
+                if (tab.getPosition() == 0) {
                     loadFragment(new PatientSignUpFragment(), "SignUp");
                 }
 
@@ -54,7 +54,7 @@ public class PatientActivity extends AppCompatActivity {
         });
     }
 
-    private void loadFragment(Fragment fragment, String tag){
+    private void loadFragment(Fragment fragment, String tag) {
 
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();

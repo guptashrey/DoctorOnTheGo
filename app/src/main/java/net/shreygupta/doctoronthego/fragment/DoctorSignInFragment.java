@@ -20,10 +20,10 @@ import net.shreygupta.doctoronthego.R;
  */
 public class DoctorSignInFragment extends Fragment {
 
-    EditText email, password;
+    private EditText email;
+    private EditText password;
 
-    Button doctor_signin_button;
-    DatabaseHelper db_h;
+    private Button doctor_signin_button;
 
     public DoctorSignInFragment() {
         // Required empty public constructor
@@ -57,11 +57,11 @@ public class DoctorSignInFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
     }
 
-    public void doctor_signin() {
+    private void doctor_signin() {
 
         String a = email.getText().toString();
         String b = password.getText().toString();
-        db_h = new DatabaseHelper(getActivity());
+        DatabaseHelper db_h = new DatabaseHelper(getActivity());
 
         String c = db_h.getDoctorPassword(a);
         if(c == null){

@@ -2,69 +2,64 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     tools:context="net.shreygupta.doctoronthego.fragment.PatientProfileFragment">
 
+    <TextView
+        android:id="@+id/fname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginStart="10dp"
+        android:text="@string/patient_profile_tv1"
+        android:textSize="18sp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/fname"
-            android:textSize="18dp"
-            android:text="First Name:"
-            android:layout_marginLeft="10dp"
-            android:layout_marginBottom="5dp"/>
+    <TextView
+        android:id="@+id/fname1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginStart="35dp"
+        android:layout_toEndOf="@id/fname"
+        android:textSize="18sp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="18dp"
-            android:layout_toRightOf="@id/fname"
-            android:layout_marginLeft="35dp"
-            android:id="@+id/fname1"
-            android:layout_marginBottom="5dp" />
+    <TextView
+        android:id="@+id/lname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fname"
+        android:layout_marginBottom="5dp"
+        android:layout_marginStart="10dp"
+        android:text="@string/patient_profile_tv2"
+        android:textSize="18sp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="18dp"
-            android:layout_marginLeft="10dp"
-            android:id="@+id/lname"
-            android:layout_below="@id/fname"
-            android:layout_marginBottom="5dp"
-            android:text="Last Name"/>
+    <TextView
+        android:id="@+id/lname1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@id/fname1"
+        android:layout_below="@id/fname1"
+        android:layout_marginBottom="5dp"
+        android:layout_toEndOf="@id/lname"
+        android:textSize="18sp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="18dp"
-            android:layout_toRightOf="@id/lname"
-            android:layout_below="@id/fname1"
-            android:layout_alignLeft="@id/fname1"
-            android:id="@+id/lname1"
-            android:layout_marginBottom="5dp" />
+    <TextView
+        android:id="@+id/email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/lname"
+        android:layout_marginBottom="5dp"
+        android:layout_marginStart="10dp"
+        android:text="@string/patient_profile_tv3"
+        android:textSize="18sp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:id="@+id/email"
-            android:textSize="18dp"
-            android:layout_below="@id/lname"
-            android:layout_marginBottom="5dp"
-            android:text="Email:"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/email1"
-            android:textSize="18dp"
-            android:layout_toRightOf="@id/email"
-            android:layout_below="@id/lname1"
-            android:layout_alignLeft="@id/lname1"
-            android:layout_marginBottom="5dp" />
-
-
-
+    <TextView
+        android:id="@+id/email1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@id/lname1"
+        android:layout_below="@id/lname1"
+        android:layout_marginBottom="5dp"
+        android:layout_toEndOf="@id/email"
+        android:textSize="18sp" />
 
 </RelativeLayout>
