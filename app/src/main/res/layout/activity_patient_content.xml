@@ -5,6 +5,52 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="net.shreygupta.doctoronthego.PatientContentActivity">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_margin="5dp">
+
+        <ImageButton
+            android:contentDescription="@string/new_appointment"
+            android:scaleType="centerCrop"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/create_appointment"
+            android:id="@+id/new_appointment"/>
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_margin="5dp">
+
+        <ImageButton
+            android:contentDescription="@string/check_appointment"
+            android:scaleType="centerCrop"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/check_appointment"
+            android:id="@+id/check_appointment"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:layout_gravity=""
+            android:layout_margin="5dp"
+            android:textSize="35sp"
+            android:padding="10dp"
+            android:text="@string/check_appointment"
+            android:textColor="@color/colorText">
+        </TextView>
+
+    </FrameLayout>
+
 
 </LinearLayout>
