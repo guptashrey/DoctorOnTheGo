@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="doctors">
+        <item>Choose Doctor</item>
+        <item>Fever</item>
+        <item>Cold</item>
+        <item>Cough</item>
+        <item>fracture</item>
+        <item>skin</item>
+    </string-array>
+</resources>
