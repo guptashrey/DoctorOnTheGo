@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="net.shreygupta.doctoronthego.DoctorSignInFragment">
+    tools:context="net.shreygupta.doctoronthego.fragment.DoctorSignInFragment">
 
     <LinearLayout
         android:layout_width="match_parent"

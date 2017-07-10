@@ -1,4 +1,4 @@
-package net.shreygupta.doctoronthego;
+package net.shreygupta.doctoronthego.fragment;
 
 
 import android.content.Context;
@@ -14,6 +14,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import net.shreygupta.doctoronthego.R;
 
 import java.util.Objects;
 
@@ -58,7 +60,7 @@ public class AdminSignInFragment extends Fragment {
 
                 if (Objects.equals(admin_email, et_admin_email.getText().toString())) {
                     if (Objects.equals(admin_pass, et_admin_pass.getText().toString())) {
-                        loadFragment(new BlankFragment());
+                        loadFragment(new AdminContentFragment());
                     }
 
                     else {

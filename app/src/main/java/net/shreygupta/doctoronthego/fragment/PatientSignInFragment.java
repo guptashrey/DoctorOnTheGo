@@ -1,4 +1,4 @@
-package net.shreygupta.doctoronthego;
+package net.shreygupta.doctoronthego.fragment;
 
 
 import android.content.Intent;
@@ -13,6 +13,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import net.shreygupta.doctoronthego.DatabaseHelper;
+import net.shreygupta.doctoronthego.PatientContentActivity;
+import net.shreygupta.doctoronthego.R;
 
 
 /**

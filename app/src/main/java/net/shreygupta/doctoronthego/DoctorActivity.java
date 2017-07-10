@@ -7,6 +7,9 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import net.shreygupta.doctoronthego.fragment.DoctorSignInFragment;
+import net.shreygupta.doctoronthego.fragment.DoctorSignUpFragment;
+
 public class DoctorActivity extends AppCompatActivity {
 
     @Override

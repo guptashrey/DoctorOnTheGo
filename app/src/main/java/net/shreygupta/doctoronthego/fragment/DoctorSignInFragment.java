@@ -1,5 +1,4 @@
-package net.shreygupta.doctoronthego;
-
+package net.shreygupta.doctoronthego.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +11,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import net.shreygupta.doctoronthego.DatabaseHelper;
+import net.shreygupta.doctoronthego.DoctorContentActivity;
+import net.shreygupta.doctoronthego.R;
 
 /**
  * A simple {@link Fragment} subclass.

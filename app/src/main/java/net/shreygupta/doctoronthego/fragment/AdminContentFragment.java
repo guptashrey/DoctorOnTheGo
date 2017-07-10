@@ -1,4 +1,4 @@
-package net.shreygupta.doctoronthego;
+package net.shreygupta.doctoronthego.fragment;
 
 
 import android.os.Bundle;
@@ -7,14 +7,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import net.shreygupta.doctoronthego.R;
+
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class BlankFragment extends Fragment {
+public class AdminContentFragment extends Fragment {
 
 
-    public BlankFragment() {
+    public AdminContentFragment() {
         // Required empty public constructor
     }
 
