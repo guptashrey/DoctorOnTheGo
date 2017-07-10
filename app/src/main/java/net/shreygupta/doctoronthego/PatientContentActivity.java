@@ -34,6 +34,7 @@ public class PatientContentActivity extends AppCompatActivity {
         current_appt.setText("VIEW APPOINTMENTS");
         t.addTab(current_appt);
 
+
         loadFragment(new PatientProfileFragment(), "Profile");
 
         t.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {

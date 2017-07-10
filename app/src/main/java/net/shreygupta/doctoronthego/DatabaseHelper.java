@@ -63,6 +63,46 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return buffer.toString();
     }
 
+    public String getFname(String email) {
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor result = db.query(
+                "PATIENT_INFO",
+                new String[] { "FIRST_NAME" },
+                "EMAIL" + "=?",
+                new String[] { String.valueOf(email) },
+                null, //This parameter deals with grouping results. No need here, hence null.
+                null, //Relates to the above. Also null.
+                null //Orders results. There should just be one, so it's null here, but can be useful.
+        );
+
+        if (result.moveToFirst()){
+            return result.getString(result.getColumnIndex("FIRST_NAME"));
+        }
+        else {
+            return null;
+        }
+    }
+
+    public String getLname(String email) {
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor result = db.query(
+                "PATIENT_INFO",
+                new String[] { "LAST_NAME" },
+                "EMAIL" + "=?",
+                new String[] { String.valueOf(email) },
+                null, //This parameter deals with grouping results. No need here, hence null.
+                null, //Relates to the above. Also null.
+                null //Orders results. There should just be one, so it's null here, but can be useful.
+        );
+
+        if (result.moveToFirst()){
+            return result.getString(result.getColumnIndex("LAST_NAME"));
+        }
+        else {
+            return null;
+        }
+    }
+
 
     public String getPatientPassword(String email){
 
@@ -83,6 +123,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         else {
             return null;
         }
+
     }
 
     public long doctor_insert_Data(String a, String b, String c, String d) {
@@ -94,6 +135,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put("LAST_NAME", b);
         contentValues.put("EMAIL", c);
         contentValues.put("PASSWORD", d);
+
 
         long id = db.insert("DOCTOR_INFO", null, contentValues);
         return id;

@@ -1,7 +1,9 @@
 package net.shreygupta.doctoronthego.fragment;
 
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -75,6 +77,11 @@ public class PatientSignInFragment extends Fragment {
         }
         else{
             if(b.equals(c)){
+                SharedPreferences sp = this.getActivity().getSharedPreferences("my_sp1", Context.MODE_PRIVATE);
+                SharedPreferences.Editor e = sp.edit();
+                e.putString("Patient_Email",a);
+                e.commit();
+
                 startActivity(new Intent(this.getActivity(),PatientContentActivity.class));
             }
             else{
