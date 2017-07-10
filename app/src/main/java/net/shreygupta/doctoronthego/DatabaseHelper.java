@@ -13,9 +13,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "Patient DatabaseHelper";
-    private static final int VERSION = 1;
-    private static final String CREATE_TABLE_PATIENT = "CREATE TABLE PATIENT_INFO(P_ID INTEGER PRIMARY KEY AUTOINCREMENT, FIRST_NAME VARCHAR(20), LAST_NAME VARCHAR(20), EMAIL VARCHAR(50), PASSWORD VARCHAR(20))";
-    private static final String CREATE_TABLE_DOCTOR = "CREATE TABLE DOCTOR_INFO(D_ID INTEGER PRIMARY KEY AUTOINCREMENT, FIRST_NAME VARCHAR(20), LAST_NAME VARCHAR(20), EMAIL VARCHAR(50), PASSWORD VARCHAR(20))";
+    private static final int VERSION = 3;
+    private static final String CREATE_TABLE_PATIENT = "CREATE TABLE PATIENT_INFO(P_ID INTEGER PRIMARY KEY AUTOINCREMENT, FIRST_NAME VARCHAR(20), LAST_NAME VARCHAR(20), EMAIL VARCHAR(50), PASSWORD VARCHAR(20));";
+    private static final String CREATE_TABLE_DOCTOR = "CREATE TABLE DOCTOR_INFO(D_ID INTEGER PRIMARY KEY AUTOINCREMENT, FIRST_NAME VARCHAR(20), LAST_NAME VARCHAR(20), EMAIL VARCHAR(50), PASSWORD VARCHAR(20));";
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, VERSION);
@@ -24,12 +24,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(CREATE_TABLE_PATIENT);
-        sqLiteDatabase.execSQL(CREATE_TABLE_DOCTOR);
+
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-
+        sqLiteDatabase.execSQL(CREATE_TABLE_DOCTOR);
     }
 
     public long patient_insert_Data(String a, String b, String c, String d) {
@@ -140,6 +140,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         long id = db.insert("DOCTOR_INFO", null, contentValues);
         return id;
     }
+
+
 
     public String getDoctorPassword(String email){
 
