@@ -22,7 +22,8 @@
         <activity android:name=".ClientChooseActivity" />
         <activity android:name=".DoctorActivity" />
         <activity android:name=".AdminActivity" />
-        <activity android:name=".PatientContentActivity"></activity>
+        <activity android:name=".PatientContentActivity" />
+        <activity android:name=".DoctorContentActivity"></activity>
     </application>
 
 </manifest>

@@ -32,6 +32,7 @@
             android:text="@string/signup_in_desc_doctor"/>
 
         <EditText
+            android:id="@+id/doctor_signin_email"
             android:inputType="textEmailAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -40,6 +41,8 @@
             android:layout_margin="10dp"/>
 
         <EditText
+            android:inputType="textPassword"
+            android:id="@+id/doctor_signin_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/signup_hint_4"
@@ -47,6 +50,7 @@
             android:layout_margin="10dp"/>
 
         <Button
+            android:id="@+id/doctor_sign_in"
             android:layout_margin="20dp"
             android:layout_gravity="center"
             android:layout_width="wrap_content"
@@ -65,7 +69,5 @@
             android:layout_gravity="center"/>
 
     </LinearLayout>
-
-
 
 </ScrollView>
