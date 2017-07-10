@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
 
 /**
  * Created by shreygupta on 10/07/17.
@@ -59,5 +60,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             buffer.append(p_id + " " + first_name + " " + last_name + " " + password + "\n");
         }
         return buffer.toString();
+    }
+
+
+    public String getPatientPassword(String email){
+
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor result = db.query(
+               "PATIENT_INFO",
+                new String[] { "PASSWORD" },
+                "EMAIL" + "=?",
+                new String[] { String.valueOf(email) },
+                null, //This parameter deals with grouping results. No need here, hence null.
+                null, //Relates to the above. Also null.
+                null //Orders results. There should just be one, so it's null here, but can be useful.
+        );
+
+        if (result.moveToFirst()){
+            return result.getString(result.getColumnIndex("PASSWORD"));
+        }
+        else {
+            return null;
+        }
+
     }
 }

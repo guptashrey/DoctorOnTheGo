@@ -1,6 +1,8 @@
 package net.shreygupta.doctoronthego;
 
 
+import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -60,10 +62,25 @@ public class PatientSignInFragment extends Fragment {
     public void patient_signin() {
 
         String a = email.getText().toString();
-        String b = email.getText().toString();
+        String b = password.getText().toString();
         db_h = new DatabaseHelper(getActivity());
-        String data = db_h.getData();
-        Toast.makeText(getActivity(), data, Toast.LENGTH_SHORT).show();
+
+        String c = db_h.getPatientPassword(a);
+        if(c == null){
+            Toast.makeText(getActivity(), "User Does Not Exist !", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            if(b.equals(c)){
+                startActivity(new Intent(this.getActivity(),PatientContentActivity.class));
+            }
+            else{
+                Toast.makeText(getActivity(), "Incorrect password", Toast.LENGTH_SHORT).show();
+            }
+        }
+
+
 
     }
+
+
 }
