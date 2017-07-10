@@ -19,9 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".PatientActivity" />
-        <activity android:name=".ClientChooseActivity">
-
-        </activity>
+        <activity android:name=".ClientChooseActivity"/>
         <activity android:name=".DoctorActivity" />
         <activity android:name=".AdminActivity" />
     </application>
