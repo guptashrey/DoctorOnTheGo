@@ -8,4 +8,44 @@
         <item>fracture</item>
         <item>skin</item>
     </string-array>
+
+    <string-array name="specialities">
+        <item>Allergist</item>
+        <item>Anesthesiologist</item>
+        <item>Cardiologist</item>
+        <item>Dermatologist</item>
+        <item>Gastroenterologist</item>
+        <item>Hematologist/Oncologist</item>
+        <item>Internal Medicine Physician</item>
+        <item>Nephrologist</item>
+        <item>Neurologist</item>
+        <item>Neurosurgeon</item>
+        <item>Obstetrician</item>
+        <item>Gynecologist</item>
+        <item>Nurse-Midwifery</item>
+        <item>Occupational Medicine Physician</item>
+        <item>Ophthalmologist</item>
+        <item>Oral and Maxillofacial Surgeon</item>
+        <item>Orthopaedic Surgeon</item>
+        <item>Otolaryngologist</item>
+        <item>Pathologist</item>
+        <item>Pediatrician</item>
+        <item>Plastic Surgeon</item>
+        <item>Podiatrist</item>
+        <item>Psychiatrist</item>
+        <item>Pulmonary Medicine Physician</item>
+        <item>Radiation Onconlogist</item>
+        <item>Diagnostic Radiologist</item>
+        <item>Rheumatologist</item>
+        <item>Urologist</item>
+    </string-array>
+
+    <string-array name="experience">
+        <item>Less than 1 Year</item>
+        <item>2 Years</item>
+        <item>3 Years</item>
+        <item>4 Years</item>
+        <item>5 Years</item>
+        <item>Greater than 5 Years</item>
+    </string-array>
 </resources>
