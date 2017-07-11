@@ -352,13 +352,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-
-
-
-
-
-
-
     public String getDoctorProfile(String email) {
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.query(
@@ -428,5 +421,83 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void updateAppointments() {
         SQLiteDatabase db = getReadableDatabase();
         db.execSQL("DELETE FROM APPOINTMENT_INFO WHERE DATE > DATE('now','-1 day');");
+    }
+
+    public String[] getPatientName(String email) {
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT PATIENT_INFO.FIRST_NAME, PATIENT_INFO.LAST_NAME FROM PATIENT_INFO, DOCTOR_INFO, APPOINTMENT_INFO WHERE DOCTOR_INFO.EMAIL" + "=?" + " AND PATIENT_INFO.P_ID = APPOINTMENT_INFO.P_ID AND DOCTOR_INFO.D_ID = APPOINTMENT_INFO.D_ID;", new String[]{String.valueOf(email)});
+
+        String name;
+        String[] patient_name;
+        int i = cursor.getCount();
+
+        if (i == 0) {
+            patient_name = new String[]{"No Appointments"};
+        } else {
+            patient_name = new String[i];
+
+            i = 0;
+
+            while (cursor.moveToNext()) {
+                String fname = cursor.getString(cursor.getColumnIndex("FIRST_NAME"));
+                String lname = cursor.getString(cursor.getColumnIndex("LAST_NAME"));
+                name = fname + " " + lname;
+                patient_name[i] = name;
+                i++;
+            }
+        }
+
+        cursor.close();
+        return patient_name;
+    }
+
+    public String[] getPatientDate(String email) {
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT APPOINTMENT_INFO.DATE FROM PATIENT_INFO, DOCTOR_INFO, APPOINTMENT_INFO WHERE DOCTOR_INFO.EMAIL" + "=?" + " AND PATIENT_INFO.P_ID = APPOINTMENT_INFO.P_ID AND DOCTOR_INFO.D_ID = APPOINTMENT_INFO.D_ID;", new String[]{String.valueOf(email)});
+
+        String[] patient_date;
+        int i = cursor.getCount();
+
+        if (i == 0) {
+            patient_date = new String[]{" "};
+        } else {
+            patient_date = new String[i];
+
+            i = 0;
+
+            while (cursor.moveToNext()) {
+                String date = cursor.getString(cursor.getColumnIndex("DATE"));
+                patient_date[i] = date;
+                i++;
+            }
+        }
+
+        cursor.close();
+        return patient_date;
+    }
+
+    public String[] getPatientTime(String email) {
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT APPOINTMENT_INFO.TIME FROM PATIENT_INFO, DOCTOR_INFO, APPOINTMENT_INFO WHERE DOCTOR_INFO.EMAIL" + "=?" + " AND PATIENT_INFO.P_ID = APPOINTMENT_INFO.P_ID AND DOCTOR_INFO.D_ID = APPOINTMENT_INFO.D_ID;", new String[]{String.valueOf(email)});
+
+        String[] patient_time;
+        int i = cursor.getCount();
+
+        if (i == 0) {
+            patient_time = new String[]{" "};
+        } else {
+            patient_time = new String[i];
+
+            i = 0;
+
+            while (cursor.moveToNext()) {
+                String time = cursor.getString(cursor.getColumnIndex("TIME"));
+                patient_time[i] = time;
+                i++;
+            }
+        }
+
+        cursor.close();
+        return patient_time;
     }
 }
