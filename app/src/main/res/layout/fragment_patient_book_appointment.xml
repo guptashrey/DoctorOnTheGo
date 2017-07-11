@@ -64,13 +64,26 @@
                 android:padding="10dp"/>
 
 
-            <ListView
-                android:id="@+id/doclist"
+            <!--<ListView-->
+            <!--android:id="@+id/doclist"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="300dp">-->
+
+            <!--</ListView>-->
+
+            <Spinner
+                android:id="@+id/selectspeciality"
                 android:layout_width="match_parent"
-                android:layout_height="300dp">
+                android:layout_height="wrap_content">
 
-            </ListView>
+            </Spinner>
 
+            <Spinner
+                android:id="@+id/selectdoctor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </Spinner>
             <Button
                 android:id="@+id/submit"
                 android:layout_width="wrap_content"

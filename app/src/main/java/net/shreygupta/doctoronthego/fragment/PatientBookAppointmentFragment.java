@@ -5,7 +5,6 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -13,10 +12,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -36,8 +36,13 @@ public class PatientBookAppointmentFragment extends Fragment {
 
     private EditText datepick;
     private EditText timepicker;
-    private ListView doclist;
     private int p_id;
+
+    private Spinner selectspeciality;
+    private Spinner selectdoctor;
+    private String selected_doctor;
+
+
 
 
     @Override
@@ -51,9 +56,11 @@ public class PatientBookAppointmentFragment extends Fragment {
         fname = v.findViewById(R.id.fname);
         lname = v.findViewById(R.id.lname);
         datepick = v.findViewById(R.id.datepicker);
-        doclist = v.findViewById(R.id.doclist);
         timepicker = v.findViewById(R.id.timepicker);
         submit = v.findViewById(R.id.submit);
+
+        selectdoctor = v.findViewById(R.id.selectdoctor);
+        selectspeciality = v.findViewById(R.id.selectspeciality);
 
         return v;
     }
@@ -62,15 +69,57 @@ public class PatientBookAppointmentFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        Resources res = getResources();
-        String[] doctors = res.getStringArray(R.array.doctors);
-        ArrayAdapter<String> adptr = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, doctors);
-        doclist.setAdapter(adptr);
+
+        final DatabaseHelper db_h = new DatabaseHelper(getActivity());
+//        Resources res = getResources();
+//        String[] doctors = res.getStringArray(R.array.doctors);
+//        ArrayAdapter<String> adptr = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, doctors);
+//        doclist.setAdapter(adptr);
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),
+                R.array.specialities, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        selectspeciality.setAdapter(adapter);
+
+        selectspeciality.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                TextView tv = (TextView) view;
+                String spc = tv.getText().toString();
+                String[] Doclist = db_h.selectdoctorlist(spc);
+
+
+                ArrayAdapter<String> adptr1 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, Doclist);
+                selectdoctor.setAdapter(adptr1);
+
+                selectdoctor.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                        TextView tv1 = (TextView) view;
+                        selected_doctor = tv1.getText().toString();
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> adapterView) {
+
+                    }
+                });
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+//        String[] arr = db_h.selectdoctorlist("Dermatologist");
+//        Toast.makeText(getActivity(), arr[0], Toast.LENGTH_SHORT).show();
 
         final SharedPreferences sp = this.getActivity().getSharedPreferences("my_sp1", Context.MODE_PRIVATE);
         String patient_email = sp.getString("Patient_Email", null);
 
-        DatabaseHelper db_h = new DatabaseHelper(getActivity());
+
         String Fname = db_h.getFname(patient_email);
         String Lname = db_h.getLname(patient_email);
         p_id = db_h.getPatientId(patient_email);
@@ -129,7 +178,7 @@ public class PatientBookAppointmentFragment extends Fragment {
                 String lname_data;
                 String date_data;
                 String time_data;
-                int d_id = 1;
+                int d_id = db_h.getDoctorId(selected_doctor);
 
                 email_data = email.getText().toString();
                 fname_data = fname.getText().toString();

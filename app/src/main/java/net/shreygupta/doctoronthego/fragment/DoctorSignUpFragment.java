@@ -54,7 +54,9 @@ public class DoctorSignUpFragment extends Fragment {
         password = v.findViewById(R.id.doctor_reg_password);
         con_password = v.findViewById(R.id.doctor_reg_con_password);
 
+
         doctor_signup_button = v.findViewById(R.id.doctor_reg_sign_up);
+
 
         return v;
     }

@@ -200,21 +200,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public int getDoctorId(String email) {
+    public int getDoctorId(String name) {
 
+        String[] parts = name.split(" ");
         SQLiteDatabase db = getReadableDatabase();
         Cursor result = db.query(
                 "DOCTOR_INFO",
                 new String[]{"D_ID"},
-                "EMAIL" + "=?",
-                new String[]{String.valueOf(email)},
+                "FIRST_NAME" + "=?",
+                new String[]{String.valueOf(parts[0])},
                 null, //This parameter deals with grouping results. No need here, hence null.
                 null, //Relates to the above. Also null.
                 null //Orders results. There should just be one, so it's null here, but can be useful.
         );
 
         if (result.moveToFirst()) {
-            int s = result.getInt(result.getColumnIndex("P_ID"));
+            int s = result.getInt(result.getColumnIndex("D_ID"));
             result.close();
             return s;
         } else {
@@ -313,5 +314,41 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             cursor.close();
             return null;
         }
+    }
+
+    public String[] selectdoctorlist(String speciality) {
+        String name;
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.query(
+                "DOCTOR_INFO",
+                new String[]{"FIRST_NAME", "LAST_NAME"},
+                "SPECIALITY" + "=?",
+                new String[]{String.valueOf(speciality)},
+                null, //This parameter deals with grouping results. No need here, hence null.
+                null, //Relates to the above. Also null.
+                null //Orders results. There should just be one, so it's null here, but can be useful.
+        );
+
+        int i = cursor.getCount();
+
+        String[] doclist;
+        if (i == 0) {
+            doclist = new String[]{"Select Another Speciality"};
+        } else {
+            doclist = new String[i];
+
+            i = 0;
+
+            while (cursor.moveToNext()) {
+                String fname = cursor.getString(cursor.getColumnIndex("FIRST_NAME"));
+                String lname = cursor.getString(cursor.getColumnIndex("LAST_NAME"));
+                name = fname + " " + lname;
+                doclist[i] = name;
+                i++;
+            }
+        }
+
+        cursor.close();
+        return doclist;
     }
 }
