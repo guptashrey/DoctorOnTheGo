@@ -11,7 +11,11 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_splash);
+
+        DatabaseHelper db_h = new DatabaseHelper(this);
+        db_h.updateAppointments();
 
         SharedPreferences sp = getSharedPreferences("my_sp", Context.MODE_PRIVATE);
         SharedPreferences.Editor e = sp.edit();
@@ -20,6 +24,7 @@ public class SplashActivity extends AppCompatActivity {
         e.putString("Admin_Password", "12345678");
 
         e.apply();
+
 
         new Thread() {
             public void run() {

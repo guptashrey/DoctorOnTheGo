@@ -131,16 +131,13 @@ public class PatientBookAppointmentFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Calendar c = Calendar.getInstance();
-                int dd = c.get(Calendar.DAY_OF_MONTH);
-                int mm = c.get(Calendar.MONTH);
-                int yy = c.get(Calendar.YEAR);
                 int hh = c.get(Calendar.HOUR_OF_DAY);
                 int mi = c.get(Calendar.MINUTE);
 
                 TimePickerDialog tp = new TimePickerDialog(getActivity(), new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        String time = hourOfDay + " : "+ minute;
+                        String time = hourOfDay + ":" + minute;
                         timepicker.setText(time);
                     }
                 }, hh, mi, false);
@@ -159,7 +156,7 @@ public class PatientBookAppointmentFragment extends Fragment {
                 DatePickerDialog dp = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(android.widget.DatePicker view, int year, int month, int dayOfMonth) {
-                        String date = dayOfMonth+"/"+(month+1)+"/"+year;
+                        String date = year + "-" + (month + 1) + "-" + dayOfMonth;
                         datepick.setText(date);
 
                     }
