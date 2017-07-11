@@ -12,7 +12,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final int VERSION = 4;
     private static final String CREATE_TABLE_PATIENT = "CREATE TABLE PATIENT_INFO(P_ID INTEGER PRIMARY KEY AUTOINCREMENT, FIRST_NAME VARCHAR(20), LAST_NAME VARCHAR(20), EMAIL VARCHAR(50), PASSWORD VARCHAR(20));";
     private static final String CREATE_TABLE_DOCTOR = "CREATE TABLE DOCTOR_INFO(D_ID INTEGER PRIMARY KEY AUTOINCREMENT, FIRST_NAME VARCHAR(20), LAST_NAME VARCHAR(20), EMAIL VARCHAR(50), PASSWORD VARCHAR(20));";
-    private static final String CREATE_TABLE_APPOINTMENT = "CREATE TABLE APPOINTMENT_INFO(A_ID INTEGER PRIMARY KEY AUTOINCREMENT, P_ID INTEGER, D_ID INTEGER, DATE VARCHAR(10), TIME VARCHAR(10));";
+    private static final String CREATE_TABLE_APPOINTMENT = "CREATE TABLE APPOINTMENT_INFO(A_ID INTEGER PRIMARY KEY AUTOINCREMENT, DATE VARCHAR(10), TIME VARCHAR(10),P_ID INTEGER, D_ID INTEGER ,FOREIGN KEY (P_ID) REFERENCES PATIENT_INFO(P_ID), FOREIGN KEY (D_ID) REFERENCES DOCTOR_INFO(D_ID));";
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, VERSION);
@@ -21,12 +21,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(CREATE_TABLE_PATIENT);
-
+        sqLiteDatabase.execSQL(CREATE_TABLE_DOCTOR);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-        sqLiteDatabase.execSQL(CREATE_TABLE_DOCTOR);
+
         sqLiteDatabase.execSQL(CREATE_TABLE_APPOINTMENT);
     }
 
@@ -59,6 +59,31 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         cursor.close();
         return buffer.toString();
+    }
+
+    public int getPatientId(String email){
+
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor result = db.query(
+                "PATIENT_INFO",
+                new String[] { "P_ID" },
+                "EMAIL" + "=?",
+                new String[] { String.valueOf(email) },
+                null, //This parameter deals with grouping results. No need here, hence null.
+                null, //Relates to the above. Also null.
+                null //Orders results. There should just be one, so it's null here, but can be useful.
+        );
+
+        if (result.moveToFirst()){
+            int s = result.getInt(result.getColumnIndex("P_ID"));
+            result.close();
+            return s;
+        }
+        else {
+            result.close();
+            return -1;
+        }
+
     }
 
     public String getFname(String email) {
@@ -172,5 +197,37 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             result.close();
             return null;
         }
+    }
+
+    public long Appointment_submit(String date, String time, int p_id, int d_id) {
+
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("DATE", date);
+        contentValues.put("TIME", time);
+        contentValues.put("P_ID", p_id);
+        contentValues.put("D_ID", d_id);
+
+        return db.insert("APPOINTMENT_INFO", null, contentValues);
+    }
+
+    public String getAppointmentData() {
+        SQLiteDatabase db = getReadableDatabase();
+        String [] columns = {"A_ID", "DATE", "TIME", "P_ID", "D_ID"};
+
+        Cursor cursor = db.query("APPOINTMENT_INFO", columns, null, null, null, null, null);
+        StringBuilder buffer = new StringBuilder();
+
+        while (cursor.moveToNext()) {
+
+            int a_id = cursor.getInt(cursor.getColumnIndex("A_ID"));
+            String date = cursor.getString(cursor.getColumnIndex("DATE"));
+            String time = cursor.getString(cursor.getColumnIndex("TIME"));
+            int p_id = cursor.getInt(cursor.getColumnIndex("P_ID"));
+            int d_id = cursor.getInt(cursor.getColumnIndex("D_ID"));
+            buffer.append(a_id).append(" ").append(date).append(" ").append(time).append(" ").append(p_id).append(" ").append(d_id).append("\n");
+        }
+        cursor.close();
+        return buffer.toString();
     }
 }

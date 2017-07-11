@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -31,11 +32,12 @@ public class PatientBookAppointmentFragment extends Fragment {
     private TextView email;
     private TextView fname;
     private TextView lname;
+    private Button submit;
 
     private EditText datepick;
     private EditText timepicker;
     private ListView doclist;
-
+    private int p_id;
 
 
     @Override
@@ -51,6 +53,7 @@ public class PatientBookAppointmentFragment extends Fragment {
         datepick = v.findViewById(R.id.datepicker);
         doclist = v.findViewById(R.id.doclist);
         timepicker = v.findViewById(R.id.timepicker);
+        submit = v.findViewById(R.id.submit);
 
         return v;
     }
@@ -70,7 +73,7 @@ public class PatientBookAppointmentFragment extends Fragment {
         DatabaseHelper db_h = new DatabaseHelper(getActivity());
         String Fname = db_h.getFname(patient_email);
         String Lname = db_h.getLname(patient_email);
-
+        p_id = db_h.getPatientId(patient_email);
         fname.setText(Fname);
         lname.setText(Lname);
         email.setText(patient_email);
@@ -115,5 +118,32 @@ public class PatientBookAppointmentFragment extends Fragment {
                 dp.show();
             }
         });
+
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                String email_data;
+                String fname_data;
+                String lname_data;
+                String date_data;
+                String time_data;
+                int d_id = 1;
+
+                email_data = email.getText().toString();
+                fname_data = fname.getText().toString();
+                lname_data = lname.getText().toString();
+                date_data = datepick.getText().toString();
+                time_data = timepicker.getText().toString();
+
+                DatabaseHelper db_h = new DatabaseHelper(getActivity());
+                db_h.Appointment_submit(date_data,time_data,p_id,d_id);
+                String res = db_h.getAppointmentData();
+
+                Toast.makeText(getActivity(),res, Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 }
