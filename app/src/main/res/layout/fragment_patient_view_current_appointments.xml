@@ -2,11 +2,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="net.shreygupta.doctoronthego.fragment.PatientViewCurrentAppointmentsFragment">
 
-    <TextView
-        android:id="@+id/curr_appt_tv"
+    <TableLayout
+        android:id="@+id/tabl_patient"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content"
+        android:stretchColumns="*">
+
+        <TableRow android:background="#0ff">
+
+            <TextView android:text="Doctor Name" />
+
+            <TextView android:text="Appointment Date" />
+
+            <TextView android:text="Appointment Time" />
+        </TableRow>
+    </TableLayout>
+
+
+    <ListView
+        android:id="@+id/appointment_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></ListView>
+
+    <!--<TextView-->
+    <!--android:id="@+id/curr_appt_tv"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent" />-->
 
 </LinearLayout>

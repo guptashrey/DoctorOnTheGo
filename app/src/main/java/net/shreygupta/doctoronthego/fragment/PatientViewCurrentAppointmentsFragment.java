@@ -9,8 +9,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.ListView;
 
+import net.shreygupta.doctoronthego.CustomAdaptorDoctor;
 import net.shreygupta.doctoronthego.DatabaseHelper;
 import net.shreygupta.doctoronthego.R;
 
@@ -19,8 +20,8 @@ import net.shreygupta.doctoronthego.R;
  */
 public class PatientViewCurrentAppointmentsFragment extends Fragment {
 
-    private TextView curr_appt;
-
+    // private TextView curr_appt;
+    private ListView lv;
 
     public PatientViewCurrentAppointmentsFragment() {
         // Required empty public constructor
@@ -32,7 +33,8 @@ public class PatientViewCurrentAppointmentsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_patient_view_current_appointments, container, false);
-        curr_appt = v.findViewById(R.id.curr_appt_tv);
+        //curr_appt = v.findViewById(R.id.curr_appt_tv);
+        lv = v.findViewById(R.id.appointment_list);
 
         return v;
     }
@@ -46,6 +48,14 @@ public class PatientViewCurrentAppointmentsFragment extends Fragment {
 
         DatabaseHelper db_h = new DatabaseHelper(getActivity());
 
-        curr_appt.setText(db_h.currAppointments_forpatient(db_h.getPatientId(patient_email)));
+        String[] name = db_h.getDoctorName(patient_email);
+        String[] date = db_h.getDoctorDate(patient_email);
+        String[] time = db_h.getDoctorTime(patient_email);
+
+        CustomAdaptorDoctor adptrr = new CustomAdaptorDoctor(getActivity(), name, date, time);
+        lv.setAdapter(adptrr);
+
+
+        //curr_appt.setText(db_h.currAppointments_forpatient(db_h.getPatientId(patient_email)));
     }
 }

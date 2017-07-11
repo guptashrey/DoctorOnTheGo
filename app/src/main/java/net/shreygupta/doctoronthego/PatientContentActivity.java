@@ -18,6 +18,8 @@ public class PatientContentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient_content);
 
+        //final DatabaseHelper db_h = new DatabaseHelper(this);
+
         TabLayout t = (TabLayout) findViewById(R.id.tab_patient_content);
 
         TabLayout.Tab profile = t.newTab();
@@ -48,6 +50,9 @@ public class PatientContentActivity extends AppCompatActivity {
                 }
 
                 if (tab.getPosition() == 2) {
+
+                    //  db_h.updateAppointments();
+
                     loadFragment(new PatientViewCurrentAppointmentsFragment(), "View_appt");
                 }
             }

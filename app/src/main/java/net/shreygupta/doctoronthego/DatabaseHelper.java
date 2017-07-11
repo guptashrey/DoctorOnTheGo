@@ -418,9 +418,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return doclist;
     }
 
-    public void updateAppointments() {
-        SQLiteDatabase db = getReadableDatabase();
-        db.execSQL("DELETE FROM APPOINTMENT_INFO WHERE DATE > DATE('now','-1 day');");
+    public String updateAppointments() {
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("DELETE FROM APPOINTMENT_INFO WHERE DATE <= '2017-7-12';");
+        String date = new String();
+        Cursor cursor = db.rawQuery("SELECT DATE('now', '1 day');", null);
+        while (cursor.moveToNext()) {
+            date = cursor.getString(0);
+        }
+
+        return date;
     }
 
     public String[] getPatientName(String email) {
@@ -499,5 +506,83 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         cursor.close();
         return patient_time;
+    }
+
+    public String[] getDoctorName(String email) {
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT DOCTOR_INFO.FIRST_NAME, DOCTOR_INFO.LAST_NAME FROM PATIENT_INFO, DOCTOR_INFO, APPOINTMENT_INFO WHERE PATIENT_INFO.EMAIL" + "=?" + " AND PATIENT_INFO.P_ID = APPOINTMENT_INFO.P_ID AND DOCTOR_INFO.D_ID = APPOINTMENT_INFO.D_ID;", new String[]{String.valueOf(email)});
+
+        String name;
+        String[] doctor_name;
+        int i = cursor.getCount();
+
+        if (i == 0) {
+            doctor_name = new String[]{"No Appointments"};
+        } else {
+            doctor_name = new String[i];
+
+            i = 0;
+
+            while (cursor.moveToNext()) {
+                String fname = cursor.getString(cursor.getColumnIndex("FIRST_NAME"));
+                String lname = cursor.getString(cursor.getColumnIndex("LAST_NAME"));
+                name = fname + " " + lname;
+                doctor_name[i] = name;
+                i++;
+            }
+        }
+
+        cursor.close();
+        return doctor_name;
+    }
+
+    public String[] getDoctorDate(String email) {
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT APPOINTMENT_INFO.DATE FROM PATIENT_INFO, DOCTOR_INFO, APPOINTMENT_INFO WHERE PATIENT_INFO.EMAIL" + "=?" + " AND PATIENT_INFO.P_ID = APPOINTMENT_INFO.P_ID AND DOCTOR_INFO.D_ID = APPOINTMENT_INFO.D_ID;", new String[]{String.valueOf(email)});
+
+        String[] doctor_date;
+        int i = cursor.getCount();
+
+        if (i == 0) {
+            doctor_date = new String[]{" "};
+        } else {
+            doctor_date = new String[i];
+
+            i = 0;
+
+            while (cursor.moveToNext()) {
+                String date = cursor.getString(cursor.getColumnIndex("DATE"));
+                doctor_date[i] = date;
+                i++;
+            }
+        }
+
+        cursor.close();
+        return doctor_date;
+    }
+
+    public String[] getDoctorTime(String email) {
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT APPOINTMENT_INFO.TIME FROM PATIENT_INFO, DOCTOR_INFO, APPOINTMENT_INFO WHERE PATIENT_INFO.EMAIL" + "=?" + " AND PATIENT_INFO.P_ID = APPOINTMENT_INFO.P_ID AND DOCTOR_INFO.D_ID = APPOINTMENT_INFO.D_ID;", new String[]{String.valueOf(email)});
+
+        String[] doctor_time;
+        int i = cursor.getCount();
+
+        if (i == 0) {
+            doctor_time = new String[]{" "};
+        } else {
+            doctor_time = new String[i];
+
+            i = 0;
+
+            while (cursor.moveToNext()) {
+                String time = cursor.getString(cursor.getColumnIndex("TIME"));
+                doctor_time[i] = time;
+                i++;
+            }
+        }
+
+        cursor.close();
+        return doctor_time;
     }
 }

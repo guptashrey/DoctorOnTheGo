@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -15,7 +16,9 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
 
         DatabaseHelper db_h = new DatabaseHelper(this);
-        db_h.updateAppointments();
+        String date = db_h.updateAppointments();
+
+        Toast.makeText(this, date, Toast.LENGTH_SHORT).show();
 
         SharedPreferences sp = getSharedPreferences("my_sp", Context.MODE_PRIVATE);
         SharedPreferences.Editor e = sp.edit();
