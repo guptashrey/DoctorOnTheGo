@@ -6,41 +6,85 @@
     android:orientation="vertical"
     tools:context="net.shreygupta.doctoronthego.fragment.PatientBookAppointmentFragment">
 
-    <EditText
-        android:id="@+id/fname"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/signup_hint_1"
-        android:inputType="textPersonName" />
+        android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/lname"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/signup_hint_2"
-        android:inputType="textPersonName" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/signup_hint_3"
-        android:inputType="textEmailAddress" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/datepicker_button" />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/timepicker_button" />
+                <EditText
+                    android:id="@+id/fname"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/signup_hint_1"
+                    android:inputType="textPersonName"
+                    android:layout_margin="10dp"
+                    android:padding="10dp"
+                    />
 
-    <ListView
-        android:id="@+id/doclist"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/lname"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/signup_hint_2"
+                    android:inputType="textPersonName"
+                    android:layout_margin="10dp"
+                    android:padding="10dp"/>
+            </LinearLayout>
 
-    </ListView>
+
+            <EditText
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/signup_hint_3"
+                android:inputType="textEmailAddress"
+                android:layout_margin="10dp"
+                android:padding="10dp"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Select Appointment Date"
+                android:clickable="true"
+                android:id="@+id/datepicker"
+                android:layout_margin="10dp"
+                android:padding="10dp"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:hint="Select Appointment Time"
+                android:id="@+id/timepicker"
+                android:layout_margin="10dp"
+                android:padding="10dp"/>
+
+
+            <ListView
+                android:id="@+id/doclist"
+                android:layout_width="match_parent"
+                android:layout_height="300dp">
+
+            </ListView>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Submit"
+                android:layout_gravity="center"/>
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </LinearLayout>
