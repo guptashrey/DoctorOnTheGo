@@ -427,6 +427,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public void updateAppointments() {
         SQLiteDatabase db = getReadableDatabase();
-        db.execSQL("DELETE FROM APPOINTMENT_INFO WHERE DATE < DATE();");
+        db.execSQL("DELETE FROM APPOINTMENT_INFO WHERE DATE > DATE('now','-1 day');");
     }
 }

@@ -5,6 +5,28 @@
     android:orientation="vertical"
     tools:context="net.shreygupta.doctoronthego.fragment.DoctorViewCurrentAppointmentsFragment">
 
+    <TableLayout
+        android:id="@+id/tabl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:stretchColumns="*">
+
+        <TableRow android:background="#0ff">
+
+            <TextView android:text="Patient Name" />
+
+            <TextView android:text="Appointment Date" />
+
+            <TextView android:text="Appointment Time" />
+        </TableRow>
+    </TableLayout>
+
+
+    <ListView
+        android:id="@+id/patient_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></ListView>
+
     <TextView
         android:id="@+id/curr_appt_tv"
         android:layout_width="match_parent"
