@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 
 import net.shreygupta.doctoronthego.fragment.DoctorProfileFragment;
+import net.shreygupta.doctoronthego.fragment.DoctorViewCurrentAppointmentsFragment;
 
 public class DoctorContentActivity extends AppCompatActivity {
 
@@ -22,13 +23,9 @@ public class DoctorContentActivity extends AppCompatActivity {
         profile.setText("PROFILE");
         t.addTab(profile);
 
-        /*TabLayout.Tab book_appt = t.newTab();
-        book_appt.setText("BOOK AN APPOINTMENT");
-        t.addTab(book_appt);
-
-        TabLayout.Tab current_appt = t.newTab();
-        book_appt.setText("VIEW APPOINTMENTS");
-        t.addTab(current_appt);*/
+        TabLayout.Tab view_appt = t.newTab();
+        view_appt.setText("VIEW APPOINTMENTS");
+        t.addTab(view_appt);
 
         loadFragment(new DoctorProfileFragment(), "Profile");
 
@@ -40,15 +37,10 @@ public class DoctorContentActivity extends AppCompatActivity {
                     loadFragment(new DoctorProfileFragment(), "Profile");
                 }
 
-/*
-                if (tab.getPosition() == 1) {
-                    loadFragment(new PatientBookAppointmentFragment(), "Book_appt");
-                }
 
-                if (tab.getPosition() == 2) {
-                    loadFragment(new PatientViewCurrentAppointmentsFragment(), "View_appt");
+                if (tab.getPosition() == 1) {
+                    loadFragment(new DoctorViewCurrentAppointmentsFragment(), "View_appt");
                 }
-*/
             }
 
             @Override
