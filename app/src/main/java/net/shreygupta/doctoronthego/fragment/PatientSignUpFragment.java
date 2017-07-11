@@ -70,30 +70,32 @@ public class PatientSignUpFragment extends Fragment {
         String d = password.getText().toString();
         String e = con_password.getText().toString();
 
-        DatabaseHelper db_h = new DatabaseHelper(getActivity());
-        long id = db_h.patient_insert_Data(a, b, c, d);
+        if (d.equals(e)) {
+            DatabaseHelper db_h = new DatabaseHelper(getActivity());
+            Long id = db_h.patient_insert_Data(a, b, c, d);
 
-        if (id <= 0) {
+            if (id <= 0) {
 
-            Toast.makeText(getActivity(), "Signup Unsuccessful.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Signup Unsuccessful.", Toast.LENGTH_SHORT).show();
 
-            first_name.setText("");
-            last_name.setText("");
-            email.setText("");
-            password.setText("");
-            con_password.setText("");
+                first_name.setText("");
+                last_name.setText("");
+                email.setText("");
+                password.setText("");
+                con_password.setText("");
 
-        }
+            } else {
 
-        else {
+                Toast.makeText(getActivity(), "Signup Successful.", Toast.LENGTH_SHORT).show();
 
-            Toast.makeText(getActivity(), "Signup Successful.", Toast.LENGTH_SHORT).show();
-
-            first_name.setText("");
-            last_name.setText("");
-            email.setText("");
-            password.setText("");
-            con_password.setText("");
+                first_name.setText("");
+                last_name.setText("");
+                email.setText("");
+                password.setText("");
+                con_password.setText("");
+            }
+        } else {
+            Toast.makeText(getActivity(), "Password Mismatch!", Toast.LENGTH_SHORT).show();
         }
     }
 }

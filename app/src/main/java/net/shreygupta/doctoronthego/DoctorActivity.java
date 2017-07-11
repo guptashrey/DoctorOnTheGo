@@ -27,7 +27,9 @@ public class DoctorActivity extends AppCompatActivity {
         signin_doctor.setText("SIGN IN");
         t1.addTab(signin_doctor);
 
-        loadFragment(new DoctorSignUpFragment(), "SignUp");
+        signin_doctor.select();
+
+        loadFragment(new DoctorSignInFragment(), "SignUp");
 
         t1.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override

@@ -46,6 +46,6 @@ public class PatientViewCurrentAppointmentsFragment extends Fragment {
 
         DatabaseHelper db_h = new DatabaseHelper(getActivity());
 
-        curr_appt.setText(db_h.currAppointments(db_h.getPatientId(patient_email)));
+        curr_appt.setText(db_h.currAppointments_forpatient(db_h.getPatientId(patient_email)));
     }
 }

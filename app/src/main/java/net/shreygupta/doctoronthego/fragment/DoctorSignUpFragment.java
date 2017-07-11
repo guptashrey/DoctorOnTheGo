@@ -1,6 +1,5 @@
 package net.shreygupta.doctoronthego.fragment;
 
-
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -18,10 +17,6 @@ import android.widget.Toast;
 import net.shreygupta.doctoronthego.DatabaseHelper;
 import net.shreygupta.doctoronthego.R;
 
-
-/**
- * A simple {@link Fragment} subclass.
- */
 public class DoctorSignUpFragment extends Fragment {
 
     private final String[] d = new String[1];
@@ -54,9 +49,7 @@ public class DoctorSignUpFragment extends Fragment {
         password = v.findViewById(R.id.doctor_reg_password);
         con_password = v.findViewById(R.id.doctor_reg_con_password);
 
-
         doctor_signup_button = v.findViewById(R.id.doctor_reg_sign_up);
-
 
         return v;
     }
@@ -118,30 +111,32 @@ public class DoctorSignUpFragment extends Fragment {
         String f = password.getText().toString();
         String g = con_password.getText().toString();
 
-        DatabaseHelper db_h = new DatabaseHelper(getActivity());
-        long id = db_h.doctor_insert_Data(a, b, c, d[0], e[0], f);
+        if (f.equals(g)) {
+            DatabaseHelper db_h = new DatabaseHelper(getActivity());
+            long id = db_h.doctor_insert_Data(a, b, c, d[0], e[0], f);
 
-        if (id <= 0) {
+            if (id <= 0) {
 
-            Toast.makeText(getActivity(), "Signup Unsuccessful.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Signup Unsuccessful.", Toast.LENGTH_SHORT).show();
 
-            first_name.setText("");
-            last_name.setText("");
-            email.setText("");
-            password.setText("");
-            con_password.setText("");
+                first_name.setText("");
+                last_name.setText("");
+                email.setText("");
+                password.setText("");
+                con_password.setText("");
 
-        }
+            } else {
 
-        else {
+                Toast.makeText(getActivity(), "Signup Successful.", Toast.LENGTH_SHORT).show();
 
-            Toast.makeText(getActivity(), "Signup Successful.", Toast.LENGTH_SHORT).show();
-
-            first_name.setText("");
-            last_name.setText("");
-            email.setText("");
-            password.setText("");
-            con_password.setText("");
+                first_name.setText("");
+                last_name.setText("");
+                email.setText("");
+                password.setText("");
+                con_password.setText("");
+            }
+        } else {
+            Toast.makeText(getActivity(), "Password Mismatch!", Toast.LENGTH_SHORT).show();
         }
     }
 }

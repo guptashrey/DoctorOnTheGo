@@ -226,6 +226,31 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
+    public int getDoctorId_from_email(String email) {
+
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor result = db.query(
+                "DOCTOR_INFO",
+                new String[]{"D_ID"},
+                "EMAIL" + "=?",
+                new String[]{String.valueOf(email)},
+                null, //This parameter deals with grouping results. No need here, hence null.
+                null, //Relates to the above. Also null.
+                null //Orders results. There should just be one, so it's null here, but can be useful.
+        );
+
+        if (result.moveToFirst()) {
+            int s = result.getInt(result.getColumnIndex("D_ID"));
+            result.close();
+            return s;
+        } else {
+            result.close();
+            return -1;
+        }
+
+    }
+
+
     public long Appointment_submit(String date, String time, int p_id, int d_id) {
 
         SQLiteDatabase db = getWritableDatabase();
@@ -285,6 +310,54 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
         return buffer.toString();
     }
+
+    public String currAppointments_forpatient(int pid) {
+        SQLiteDatabase db = getReadableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT DOCTOR_INFO.FIRST_NAME,DOCTOR_INFO.LAST_NAME,DATE,TIME FROM PATIENT_INFO,DOCTOR_INFO,APPOINTMENT_INFO WHERE PATIENT_INFO.P_ID" + "=?" + " AND DOCTOR_INFO.D_ID = APPOINTMENT_INFO.D_ID AND PATIENT_INFO.P_ID = APPOINTMENT_INFO.P_ID;", new String[]{String.valueOf(pid)});
+
+        StringBuilder buffer = new StringBuilder();
+
+        while (cursor.moveToNext()) {
+
+            String fname = cursor.getString(cursor.getColumnIndex("FIRST_NAME"));
+            String lname = cursor.getString(cursor.getColumnIndex("LAST_NAME"));
+            String date = cursor.getString(cursor.getColumnIndex("DATE"));
+            String time = cursor.getString(cursor.getColumnIndex("TIME"));
+
+            buffer.append(fname).append(" ").append(lname).append(" ").append(date).append(" ").append(time).append("\n");
+        }
+        cursor.close();
+        return buffer.toString();
+    }
+
+
+    public String currAppointments_fordoctor(int did) {
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT PATIENT_INFO.FIRST_NAME,PATIENT_INFO.LAST_NAME,DATE,TIME FROM PATIENT_INFO,DOCTOR_INFO,APPOINTMENT_INFO WHERE DOCTOR_INFO.D_ID" + "=?" + " AND PATIENT_INFO.P_ID = APPOINTMENT_INFO.P_ID AND DOCTOR_INFO.D_ID = APPOINTMENT_INFO.D_ID;", new String[]{String.valueOf(did)});
+
+        StringBuilder buffer = new StringBuilder();
+
+        while (cursor.moveToNext()) {
+
+            String fname = cursor.getString(cursor.getColumnIndex("FIRST_NAME"));
+            String lname = cursor.getString(cursor.getColumnIndex("LAST_NAME"));
+            String date = cursor.getString(cursor.getColumnIndex("DATE"));
+            String time = cursor.getString(cursor.getColumnIndex("TIME"));
+
+            buffer.append(fname).append(" ").append(lname).append(" ").append(date).append(" ").append(time).append("\n");
+        }
+        cursor.close();
+        return buffer.toString();
+    }
+
+
+
+
+
+
+
+
 
     public String getDoctorProfile(String email) {
         SQLiteDatabase db = getReadableDatabase();
